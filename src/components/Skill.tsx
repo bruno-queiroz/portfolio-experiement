@@ -1,73 +1,26 @@
 import React from "react";
 
+import { experienceData, TechnologiesData } from "../../public/portifolioData";
+import CareerTimeline from "./CareerTimeline";
+import TechnologySticker from "./TechnologySticker";
+
 const Skill = () => {
   return (
-    <section>
-      <h2>Skills & Experience</h2>
-
-      <div>
-        <div>
-          <div>
-            <div>
-              <img src="" alt="" />
-            </div>
-            Git
-          </div>
-
-          <div>
-            <div>
-              <img src="" alt="" />
-            </div>
-            React
-          </div>
-          <div>
-            <div>
-              <img src="" alt="" />
-            </div>
-            Node JS
-          </div>
-          <div>
-            <div>
-              <img src="" alt="" />
-            </div>
-            Figma
-          </div>
-          <div>
-            <div>
-              <img src="" alt="" />
-            </div>
-            Flutter
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <div>
-          <div>
-            <span>2020</span>
-          </div>
-          <div>
-            <div>
-              <span>Frontend Developer</span>
-              <span>Google</span>
-            </div>
-            <div>
-              <span>Blockchain</span>
-              <span>Facebook</span>
-            </div>
-          </div>
+    <section className="flex flex-col gap-4 p-4 py-24">
+      <h2 className="text-4xl text-center font-semibold py-12">
+        Skills & Experience
+      </h2>
+      <div className="flex flex-col gap-12 lg:grid lg:grid-cols-2 lg:max-w-[800px] lg:mx-auto">
+        <div className="flex gap-4 flex-wrap justify-center w-full">
+          {TechnologiesData.map((technology, index) => (
+            <TechnologySticker key={index} {...technology} />
+          ))}
         </div>
 
-        <div>
-          <div>
-            <span>2021</span>
-          </div>
-          <div>
-            <div>
-              <span>Backend Developer</span>
-              <span>Meta</span>
-            </div>
-          </div>
+        <div className="flex flex-col gap-4 sm:items-center">
+          {experienceData.map((experience, index) => (
+            <CareerTimeline key={index} {...experience} />
+          ))}
         </div>
       </div>
     </section>
