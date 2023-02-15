@@ -1,39 +1,22 @@
 import React from "react";
-import {
-  IoIosArrowBack as LeftArrowIcon,
-  IoIosArrowForward as RightArrowIcon,
-} from "react-icons/io";
+import { testimonialsBrandsImg } from "../../public/portifolioData";
+import Carousel from "./Carousel";
 
 const Testimonials = () => {
   return (
-    <section>
-      <div>
-        <img src="" alt="" />
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus
-          earum consequatur atque sed possimus voluptates corporis ad neque
-          magnam, rerum ipsum expedita, a, eveniet unde veritatis odio
-          asperiores in nesciunt.
-        </p>
-        <div>
-          <span>Michael</span>
-          <span>Google</span>
+    <section className="bg-[#EDF2F8]">
+      <div className="p-4 py-12 flex flex-col gap-12">
+        <Carousel />
+        <div className="grid grid-cols-[repeat(auto-fit,170px)] justify-center gap-4">
+          {testimonialsBrandsImg.map((testimonialBrandImg, index) => (
+            <img
+              src={testimonialBrandImg}
+              alt="brand-image"
+              key={index}
+              className="grayscale hover:grayscale-0"
+            />
+          ))}
         </div>
-      </div>
-      <div>
-        <button type="button">
-          <LeftArrowIcon />
-        </button>
-        <button type="button">
-          <RightArrowIcon />
-        </button>
-      </div>
-
-      <div>
-        <img src="" alt="" />
-        <img src="" alt="" />
-        <img src="" alt="" />
-        <img src="" alt="" />
       </div>
     </section>
   );
