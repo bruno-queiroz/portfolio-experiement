@@ -7,7 +7,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <header className="fixed top-0 p-4 bg-[rgba(255,255,255,0.4)] w-full z-50">
-      <div className="flex items-center justify-between w-full max-w-[1440px] md:justify-center">
+      <div className="flex items-center justify-between w-full max-w-[1440px] md:justify-center mx-auto">
         <span className="font-bold text-2xl leading-[0] md:absolute md:left-4">
           MIC<span className="text-blue-700">AEL</span>
         </span>
