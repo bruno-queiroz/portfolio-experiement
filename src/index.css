@@ -2,14 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.background-image {
-  background-image: url("assets/images/profile.png");
+.main-background-image {
+  background-image: url("assets/images/bgWhite.png");
   background-size: cover;
   background-repeat: no-repeat;
-  max-width: 600px;
-  width: 100%;
-  aspect-ratio: 1/1;
-  margin: auto;
 }
 
 .flutter-bg-image {
