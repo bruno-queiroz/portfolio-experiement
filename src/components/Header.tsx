@@ -5,9 +5,8 @@ import { GrClose as CloseMenuIcon } from "react-icons/gr";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  console.log(isMenuOpen);
   return (
-    <header className="fixed top-0 p-4 bg-white w-full">
+    <header className="fixed top-0 p-4 bg-[rgba(255,255,255,0.4)] w-full z-50">
       <div className="flex items-center justify-between w-full max-w-[1440px] md:justify-center">
         <span className="font-bold text-2xl leading-[0] md:absolute md:left-4">
           MIC<span className="text-blue-700">AEL</span>
@@ -27,7 +26,7 @@ const Header = () => {
             onClick={() => setIsMenuOpen(false)}
           />
           <div
-            className={`fixed top-0 right-0 bottom-0 left-[25%] bg-white p-4 transition-transform md:relative md:inset-0 md:translate-x-0 ${
+            className={`fixed top-0 right-0 bottom-0 left-[25%] bg-white md:bg-transparent p-4 transition-transform md:relative md:inset-0 md:translate-x-0 ${
               isMenuOpen ? "translate-x-0" : "translate-x-[100%]"
             }`}
           >
@@ -38,7 +37,7 @@ const Header = () => {
             >
               <CloseMenuIcon />
             </button>
-            <ul className="flex flex-col gap-8 md:flex-row md:gap-4 mx-auto">
+            <ul className="flex flex-col gap-8 md:flex-row md:gap-4 mx-auto text-gray-600 text-font-md">
               <li>
                 <a href="">HOME</a>
               </li>
