@@ -3,7 +3,7 @@ import profile from "../assets/images/profile.png";
 
 const Home = () => {
   return (
-    <main className="flex flex-col p-4 pb-0 pt-[150px] bg-[#EDF2F8] xl:grid xl:grid-cols-[1fr_780px_1fr] xl:gap-4 min-h-[100vh] main-background-image">
+    <main className="flex flex-col p-4 pb-0 pt-[150px] bg-[#EDF2F8] xl:grid xl:grid-cols-[1fr_auto_1fr] xl:gap-4 min-h-[100vh] main-background-image">
       <div className="pl-4 sm:pl-[8rem] xl:pl-4 mt-4 xl:justify-self-end">
         <div className="py-4 px-10 rounded bg-white w-[max-content] shadow-lg">
           <h1 className="flex gap-4 ">
