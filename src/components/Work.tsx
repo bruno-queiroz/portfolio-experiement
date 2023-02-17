@@ -3,7 +3,7 @@ import { projectCard } from "../../public/portifolioData";
 import ProjectCard from "./ProjectCard";
 
 const Work = () => {
-  const [projectCategory, setProjectCategory] = useState("all");
+  const [projectCategory, setProjectCategory] = useState("All");
 
   const changeProjectCategory = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -12,7 +12,7 @@ const Work = () => {
   };
 
   return (
-    <section className="flex flex-col items-center gap-12 bg-[#EDF2F8] px-4 py-12">
+    <section className="flex flex-col items-center justify-center gap-12 bg-[#EDF2F8] px-4 py-12 min-h-[100vh]">
       <h2 className="text-4xl md:text-5xl font-semibold text-center">
         My Creative <span className="text-blue-700">Portfolio</span> Section
       </h2>
