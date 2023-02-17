@@ -5,7 +5,7 @@ import mobileImg from "../assets/images/mobile.png";
 
 const TakeACoffeSection = () => {
   return (
-    <section className="bg-white py-20 px-4">
+    <section className="flex items-center bg-white py-12 px-4 min-h-[100vh]">
       <div className="max-w-[700px] w-full mx-auto">
         <h2 className="text-4xl font-semibold text-center mb-24">
           Take A Coffe & Chat With Me
