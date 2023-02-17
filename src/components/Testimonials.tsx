@@ -4,7 +4,7 @@ import Carousel from "./Carousel";
 
 const Testimonials = () => {
   return (
-    <section className="bg-[#EDF2F8]">
+    <section className="flex flex-col items-center justify-center bg-[#EDF2F8] min-h-[100vh]">
       <div className="p-4 py-12 flex flex-col gap-12">
         <Carousel />
         <div className="grid grid-cols-[repeat(auto-fit,170px)] justify-center gap-4">
