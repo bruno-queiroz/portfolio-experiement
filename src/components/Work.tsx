@@ -1,9 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { projectCard } from "../../public/portifolioData";
+import { createObserver } from "../utils/intersectionObserver";
 import ProjectCard from "./ProjectCard";
 
 const Work = () => {
+  const sectionElementRef = useRef<HTMLDivElement>(null);
+  const [isIntersecting, setIsIntersecting] = useState(false);
   const [projectCategory, setProjectCategory] = useState("All");
+
+  const handleWorkIntersection = (entry: IntersectionObserverEntry) => {
+    setIsIntersecting(entry.isIntersecting);
+  };
+
+  useEffect(() => {
+    const clearObserver = createObserver(
+      handleWorkIntersection,
+      [sectionElementRef.current!],
+      "-100px"
+    );
+    return () => clearObserver();
+  }, []);
 
   const changeProjectCategory = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -12,7 +28,14 @@ const Work = () => {
   };
 
   return (
-    <section className="flex flex-col items-center justify-center gap-12 bg-[#EDF2F8] px-4 py-12 min-h-[100vh]">
+    <section
+      className={`flex flex-col items-center justify-center gap-12 bg-[#EDF2F8] px-4 py-12 min-h-[100vh] transition-all duration-700 ${
+        isIntersecting
+          ? "translate-y-0 opacity-1"
+          : "translate-y-[80px] opacity-0"
+      }`}
+      ref={sectionElementRef}
+    >
       <h2 className="text-4xl md:text-5xl font-semibold text-center">
         My Creative <span className="text-blue-700">Portfolio</span> Section
       </h2>
