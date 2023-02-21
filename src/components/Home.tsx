@@ -91,7 +91,7 @@ const Home = () => {
         <img
           src={profile}
           alt=""
-          className="mx-auto lg:w-[750px] mt-[inherit] relative z-10"
+          className="mx-auto lg:w-[735px] mt-[inherit] relative z-10"
         />
       </div>
       <div
