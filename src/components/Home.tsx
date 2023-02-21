@@ -48,9 +48,9 @@ const Home = () => {
     return () => clearObservers();
   }, []);
   return (
-    <main className="flex flex-col p-4 pb-0 pt-[150px] bg-[#EDF2F8] xl:grid xl:grid-cols-[1fr_auto_1fr] xl:gap-4 min-h-[100vh] main-background-image">
+    <main className="flex flex-col p-6 pb-0 pt-[150px] bg-[#EDF2F8] xl:grid xl:grid-cols-[1fr_auto_1fr] xl:gap-4 min-h-[100vh] main-background-image">
       <div
-        className="pl-4 sm:pl-[8rem] xl:pl-4 mt-4 xl:justify-self-end xl:h-[max-content]"
+        className="pl-4 sm:pl-[8rem] xl:pl-0 mt-4 xl:justify-self-end xl:h-[max-content]"
         id="first-lazy-loading-element"
         ref={firstLazyLoadingElementRef}
       >
@@ -82,7 +82,7 @@ const Home = () => {
       </div>
       <div className="mt-8 mb-16 xl:mb-0 relative">
         <div
-          className={`absolute w-full max-w-[566px] aspect-square rounded-[50%] bg-gradient-to-r from-[#EDF2F8] to-gray-300 z-[1] left-[50%] top-[50%] translate-x-[-50%] translate-y-[-40%] transition-transform duration-500 ${
+          className={`absolute w-full max-w-[566px] lg:max-w-[735px] aspect-square rounded-[50%] bg-gradient-to-r from-[#EDF2F8] to-gray-300 z-[1] left-[50%] top-[50%] translate-x-[-50%] translate-y-[-40%] transition-transform duration-500 ${
             isIntersectingSecondElement ? "scale-100" : "scale-0"
           }`}
           id="second-lazy-loading-element"
