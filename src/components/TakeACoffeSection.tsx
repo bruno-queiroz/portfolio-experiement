@@ -1,11 +1,36 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import emailImg from "../assets/images/email.png";
 import mobileImg from "../assets/images/mobile.png";
+import { createObserver } from "../utils/intersectionObserver";
 
 const TakeACoffeSection = () => {
+  const sectionElementRef = useRef<HTMLDivElement>(null);
+  const [isIntersecting, setIsIntersecting] = useState(false);
+
+  const handleTakeACoffeeIntersection = (entry: IntersectionObserverEntry) => {
+    setIsIntersecting(entry.isIntersecting);
+  };
+
+  useEffect(() => {
+    const clearIntersection = createObserver(
+      handleTakeACoffeeIntersection,
+      [sectionElementRef.current!],
+      "-100px"
+    );
+    return () => {
+      clearIntersection();
+    };
+  }, []);
   return (
-    <section className="flex items-center bg-white py-12 px-4 min-h-[100vh]">
+    <section
+      className={`flex items-center bg-white py-12 px-4 min-h-[100vh] transition-all duration-700 ${
+        isIntersecting
+          ? "translate-y-0 opacity-1"
+          : "translate-y-[80px] opacity-0"
+      }`}
+      ref={sectionElementRef}
+    >
       <div className="max-w-[700px] w-full mx-auto">
         <h2 className="text-4xl font-semibold text-center mb-24">
           Take A Coffe & Chat With Me
