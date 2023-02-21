@@ -11,12 +11,13 @@ const setupIntersectionCallback = (
 
 export const createObserver = (
   forEachIntersection: (entry: IntersectionObserverEntry) => void,
-  elementsTobeObserved: Element[]
+  elementsTobeObserved: Element[],
+  rootMargin = "0px"
 ) => {
   const intersectionCallback = setupIntersectionCallback(forEachIntersection);
   const options = {
     root: null,
-    rootMargin: "0px",
+    rootMargin: rootMargin,
     threshold: 0,
   };
 
