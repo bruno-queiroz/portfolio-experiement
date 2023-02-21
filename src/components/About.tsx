@@ -1,9 +1,34 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import SkillCard from "./SkillCard";
 import { skillData } from "../../public/portifolioData";
+import { createObserver } from "../utils/intersectionObserver";
 const About = () => {
+  const sectionElementRef = useRef<HTMLDivElement>(null);
+  const [isIntersecting, setIsIntersecting] = useState(false);
+
+  const handleAboutIntersection = (entry: IntersectionObserverEntry) => {
+    setIsIntersecting(entry.isIntersecting);
+  };
+
+  useEffect(() => {
+    const clearIntersection = createObserver(
+      handleAboutIntersection,
+      [sectionElementRef.current!],
+      "-100px"
+    );
+    return () => {
+      clearIntersection();
+    };
+  }, []);
   return (
-    <section className="flex flex-col items-center justify-center p-4 min-h-[100vh]">
+    <section
+      className={`flex flex-col items-center justify-center p-4 min-h-[100vh] transition-all duration-700 ${
+        isIntersecting
+          ? "translate-y-0 opacity-1"
+          : "translate-y-[80px] opacity-0"
+      }`}
+      ref={sectionElementRef}
+    >
       <h2 className="text-4xl max-w-[525px] font-semibold text-center py-12 leading-[3rem] lg:leading-[10rem]]">
         <span className="">I know that</span>{" "}
         <span className="text-blue-700">Good Apps</span>
