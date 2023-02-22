@@ -36,6 +36,7 @@ const Skill = () => {
           ? "translate-y-0 opacity-1"
           : "translate-y-[80px] opacity-0"
       }`}
+      id="skills"
       ref={sectionElementRef}
     >
       <h2 className="text-4xl md:text-5xl text-center font-semibold py-12">

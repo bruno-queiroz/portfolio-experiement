@@ -29,14 +29,15 @@ const Testimonials = () => {
   }, []);
   return (
     <section
-      className={`flex flex-col items-center justify-center bg-[#EDF2F8] min-h-[100vh] transition-all duration-700 ${
+      className={`flex flex-col items-center justify-center p-4 py-12  bg-[#EDF2F8] min-h-[100vh] transition-all duration-700 ${
         isIntersecting
           ? "translate-y-0 opacity-1"
           : "translate-y-[80px] opacity-0"
       }`}
+      id="testimonials"
       ref={sectionElementRef}
     >
-      <div className="p-4 py-12 flex flex-col gap-12">
+      <div className="flex flex-col gap-12">
         <Carousel />
         <div className="grid grid-cols-[repeat(auto-fit,170px)] justify-center gap-4">
           {testimonialsBrandsImg.map((testimonialBrandImg, index) => (

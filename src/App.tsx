@@ -14,7 +14,7 @@ type NavigateSections =
   | "work"
   | "skills"
   | "testimonials"
-  | "takeACoffee";
+  | "contact";
 
 export const navigateAtom = atom<NavigateSections>("home");
 

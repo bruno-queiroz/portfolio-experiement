@@ -40,6 +40,7 @@ const Work = () => {
           ? "translate-y-0 opacity-1"
           : "translate-y-[80px] opacity-0"
       }`}
+      id="work"
       ref={sectionElementRef}
     >
       <h2 className="text-4xl md:text-5xl font-semibold text-center">

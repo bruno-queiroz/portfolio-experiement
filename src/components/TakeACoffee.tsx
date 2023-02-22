@@ -13,7 +13,7 @@ const TakeACoffeSection = () => {
 
   const handleTakeACoffeeIntersection = (entry: IntersectionObserverEntry) => {
     if (entry.isIntersecting) {
-      setCurrentNavigateState("takeACoffee");
+      setCurrentNavigateState("contact");
     }
     setIsIntersecting(entry.isIntersecting);
   };
@@ -35,6 +35,7 @@ const TakeACoffeSection = () => {
           ? "translate-y-0 opacity-1"
           : "translate-y-[80px] opacity-0"
       }`}
+      id="contact"
       ref={sectionElementRef}
     >
       <div className="max-w-[700px] w-full mx-auto">

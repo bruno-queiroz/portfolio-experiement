@@ -39,19 +39,19 @@ const Header = () => {
             </button>
             <ul className="flex flex-col gap-8 md:flex-row md:gap-4 mx-auto text-gray-600 text-font-md">
               <li>
-                <a href="">HOME</a>
+                <a href="#">HOME</a>
               </li>
               <li>
-                <a href="">ABOUT</a>
+                <a href="#about">ABOUT</a>
               </li>
               <li>
-                <a href="">WORK</a>
+                <a href="#work">WORK</a>
               </li>
               <li>
-                <a href="">SKILLS</a>
+                <a href="#skills">SKILLS</a>
               </li>
               <li>
-                <a href="">CONTACT</a>
+                <a href="#contact">CONTACT</a>
               </li>
             </ul>
           </div>

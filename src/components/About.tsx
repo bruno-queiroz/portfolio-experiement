@@ -34,6 +34,7 @@ const About = () => {
           ? "translate-y-0 opacity-1"
           : "translate-y-[80px] opacity-0"
       }`}
+      id="about"
       ref={sectionElementRef}
     >
       <h2 className="text-4xl max-w-[525px] font-semibold text-center py-12 leading-[3rem] lg:leading-[10rem]]">
