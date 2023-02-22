@@ -47,12 +47,16 @@ const Home = () => {
   };
 
   useEffect(() => {
-    const clearObservers = createObserver(handleHomeIntersection, [
-      firstLazyLoadingElementRef.current!,
-      secondLazyLoadingElementRef.current!,
-      thirdLazyLoadingElementRef.current!,
-      mainSectionRef.current!,
-    ]);
+    const clearObservers = createObserver(
+      handleHomeIntersection,
+      [
+        firstLazyLoadingElementRef.current!,
+        secondLazyLoadingElementRef.current!,
+        thirdLazyLoadingElementRef.current!,
+        mainSectionRef.current!,
+      ],
+      "-100px"
+    );
     return () => clearObservers();
   }, []);
   return (
