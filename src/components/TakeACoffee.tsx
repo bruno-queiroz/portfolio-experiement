@@ -1,4 +1,6 @@
+import { useAtom } from "jotai";
 import React, { useEffect, useRef, useState } from "react";
+import { navigateAtom } from "../App";
 
 import emailImg from "../assets/images/email.png";
 import mobileImg from "../assets/images/mobile.png";
@@ -7,8 +9,12 @@ import { createObserver } from "../utils/intersectionObserver";
 const TakeACoffeSection = () => {
   const sectionElementRef = useRef<HTMLDivElement>(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
+  const [, setCurrentNavigateState] = useAtom(navigateAtom);
 
   const handleTakeACoffeeIntersection = (entry: IntersectionObserverEntry) => {
+    if (entry.isIntersecting) {
+      setCurrentNavigateState("takeACoffee");
+    }
     setIsIntersecting(entry.isIntersecting);
   };
 

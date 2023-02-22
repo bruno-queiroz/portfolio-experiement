@@ -1,13 +1,19 @@
+import { useAtom } from "jotai";
 import React, { useEffect, useRef, useState } from "react";
 import { testimonialsBrandsImg } from "../../public/portifolioData";
+import { navigateAtom } from "../App";
 import { createObserver } from "../utils/intersectionObserver";
 import Carousel from "./Carousel";
 
 const Testimonials = () => {
   const sectionElementRef = useRef<HTMLDivElement>(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
+  const [, setCurrentNavigateState] = useAtom(navigateAtom);
 
   const handleTestimonialsIntersection = (entry: IntersectionObserverEntry) => {
+    if (entry.isIntersecting) {
+      setCurrentNavigateState("testimonials");
+    }
     setIsIntersecting(entry.isIntersecting);
   };
 

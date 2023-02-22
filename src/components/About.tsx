@@ -2,11 +2,18 @@ import React, { useEffect, useRef, useState } from "react";
 import SkillCard from "./SkillCard";
 import { skillData } from "../../public/portifolioData";
 import { createObserver } from "../utils/intersectionObserver";
+import { useAtom } from "jotai";
+import { navigateAtom } from "../App";
+
 const About = () => {
   const sectionElementRef = useRef<HTMLDivElement>(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
+  const [, setCurrentNavigateState] = useAtom(navigateAtom);
 
   const handleAboutIntersection = (entry: IntersectionObserverEntry) => {
+    if (entry.isIntersecting) {
+      setCurrentNavigateState("about");
+    }
     setIsIntersecting(entry.isIntersecting);
   };
 

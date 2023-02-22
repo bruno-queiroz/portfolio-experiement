@@ -1,5 +1,7 @@
+import { useAtom } from "jotai";
 import React, { useEffect, useRef, useState } from "react";
 import { projectCard } from "../../public/portifolioData";
+import { navigateAtom } from "../App";
 import { createObserver } from "../utils/intersectionObserver";
 import ProjectCard from "./ProjectCard";
 
@@ -7,8 +9,12 @@ const Work = () => {
   const sectionElementRef = useRef<HTMLDivElement>(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
   const [projectCategory, setProjectCategory] = useState("All");
+  const [, setCurrentNavigateState] = useAtom(navigateAtom);
 
   const handleWorkIntersection = (entry: IntersectionObserverEntry) => {
+    if (entry.isIntersecting) {
+      setCurrentNavigateState("work");
+    }
     setIsIntersecting(entry.isIntersecting);
   };
 

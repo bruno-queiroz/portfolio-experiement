@@ -1,6 +1,8 @@
+import { useAtom } from "jotai";
 import React, { useEffect, useRef, useState } from "react";
 
 import { experienceData, TechnologiesData } from "../../public/portifolioData";
+import { navigateAtom } from "../App";
 import { createObserver } from "../utils/intersectionObserver";
 import CareerTimeline from "./CareerTimeline";
 import TechnologySticker from "./TechnologySticker";
@@ -8,8 +10,12 @@ import TechnologySticker from "./TechnologySticker";
 const Skill = () => {
   const sectionElementRef = useRef<HTMLDivElement>(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
+  const [, setCurrentNavigateState] = useAtom(navigateAtom);
 
   const handleSkillIntersection = (entry: IntersectionObserverEntry) => {
+    if (entry.isIntersecting) {
+      setCurrentNavigateState("skills");
+    }
     setIsIntersecting(entry.isIntersecting);
   };
 

@@ -1,4 +1,6 @@
+import { useAtom } from "jotai";
 import { useEffect, useRef, useState } from "react";
+import { navigateAtom } from "../App";
 import helloImg from "../assets/images/hello.svg";
 import profile from "../assets/images/profile.png";
 import { createObserver } from "../utils/intersectionObserver";
@@ -7,6 +9,8 @@ const Home = () => {
   const firstLazyLoadingElementRef = useRef<HTMLDivElement>(null);
   const secondLazyLoadingElementRef = useRef<HTMLDivElement>(null);
   const thirdLazyLoadingElementRef = useRef<HTMLDivElement>(null);
+  const mainSectionRef = useRef<HTMLDivElement>(null);
+  const [, setCurrentNavigateState] = useAtom(navigateAtom);
 
   const [isIntersectingFirstElement, setIsIntersectingFirstElement] =
     useState(false);
@@ -17,6 +21,9 @@ const Home = () => {
 
   const handleHomeIntersection = (entry: IntersectionObserverEntry) => {
     if (entry.isIntersecting) {
+      if (entry.target.id === "main-section") {
+        setCurrentNavigateState("home");
+      }
       if (entry.target.id === "first-lazy-loading-element") {
         setIsIntersectingFirstElement(true);
         return;
@@ -44,11 +51,16 @@ const Home = () => {
       firstLazyLoadingElementRef.current!,
       secondLazyLoadingElementRef.current!,
       thirdLazyLoadingElementRef.current!,
+      mainSectionRef.current!,
     ]);
     return () => clearObservers();
   }, []);
   return (
-    <main className="flex flex-col p-6 pb-0 pt-[150px] bg-[#EDF2F8] xl:grid xl:grid-cols-[1fr_auto_1fr] xl:gap-4 min-h-[100vh] main-background-image">
+    <main
+      className="flex flex-col p-6 pb-0 pt-[150px] bg-[#EDF2F8] xl:grid xl:grid-cols-[1fr_auto_1fr] xl:gap-4 min-h-[100vh] main-background-image"
+      ref={mainSectionRef}
+      id="main-section"
+    >
       <div
         className="pl-4 sm:pl-[8rem] xl:pl-0 mt-4 xl:justify-self-end xl:h-[max-content]"
         id="first-lazy-loading-element"
