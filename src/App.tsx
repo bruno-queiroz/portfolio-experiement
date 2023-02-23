@@ -7,6 +7,7 @@ import Testimonials from "./components/Testimonials";
 import { atom, useAtom } from "jotai";
 import Work from "./components/Work";
 import NavigationIndicator from "./components/NavigationIndicator";
+import SocialNav from "./components/SocialNav";
 
 type NavigateSections =
   | "home"
@@ -23,6 +24,7 @@ const App = () => {
     <>
       <Header />
       <Home />
+      <SocialNav />
       <About />
       <Work />
       <Skill />
