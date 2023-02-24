@@ -1,22 +1,21 @@
 import React from "react";
-
-interface ProjectCardProps {
-  category: string;
-  title: string;
-  img: string;
-  description: string;
-}
+import { buildImageUrlFor } from "../utils/buildImageUrl";
+import { ProjectCardTypes } from "./Work";
 
 const ProjectCard = ({
   title,
   category,
-  img,
+  image,
   description,
-}: ProjectCardProps) => {
+}: ProjectCardTypes) => {
   return (
     <article className="flex flex-col gap-3 text-center p-4 bg-white rounded-md shadow-md">
       <div className="flex relative">
-        <img src={img} alt="" className="object-cover rounded-md" />
+        <img
+          src={buildImageUrlFor(image?.asset?._ref).url()}
+          alt=""
+          className="object-cover rounded-md"
+        />
         <div className="absolute bottom-0 left-[50%] translate-x-[-50%] bg-white rounded-t-md px-3 py-1 pb-0 text-gray-500">
           {category}
         </div>
