@@ -4,11 +4,34 @@ import { skillData } from "../../public/portifolioData";
 import { createObserver } from "../utils/intersectionObserver";
 import { useAtom } from "jotai";
 import { navigateAtom } from "../App";
+import { getSkills } from "../fetch/getSkills";
+import { SanityResultDefaultTypes } from "../fetch/config";
+
+interface SkillTypes {
+  title: string;
+  description: string;
+  image: {
+    _type: string;
+    asset: {
+      _ref: string;
+      _type: string;
+    };
+  };
+}
+
+export type Skill = SkillTypes & SanityResultDefaultTypes;
 
 const About = () => {
   const sectionElementRef = useRef<HTMLDivElement>(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
   const [, setCurrentNavigateState] = useAtom(navigateAtom);
+  const [skills, setSkills] = useState<Skill[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      setSkills(await getSkills());
+    })();
+  }, []);
 
   const handleAboutIntersection = (entry: IntersectionObserverEntry) => {
     if (entry.isIntersecting) {
@@ -44,7 +67,7 @@ const About = () => {
       </h2>
 
       <div className="grid grid-cols-[repeat(auto-fit,200px)] mt-4 justify-center gap-12 max-w-[1000px] mx-auto w-full pb-12">
-        {skillData.map((skill, index) => (
+        {skills?.map((skill, index) => (
           <SkillCard key={index} {...skill} />
         ))}
       </div>
