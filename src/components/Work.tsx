@@ -1,15 +1,38 @@
 import { useAtom } from "jotai";
 import React, { useEffect, useRef, useState } from "react";
-import { projectCard } from "../../public/portifolioData";
 import { navigateAtom } from "../App";
+import { SanityResultDefaultTypes } from "../fetch/config";
+import { getWork } from "../fetch/getWork";
 import { createObserver } from "../utils/intersectionObserver";
 import ProjectCard from "./ProjectCard";
 
+interface ProjectCardData {
+  category: string;
+  title: string;
+  description: string;
+  image: {
+    _type: string;
+    asset: {
+      _ref: string;
+      _type: string;
+    };
+  };
+}
+
+export type ProjectCardTypes = ProjectCardData & SanityResultDefaultTypes;
+
 const Work = () => {
+  const [projects, setProjects] = useState<ProjectCardTypes[]>([]);
   const sectionElementRef = useRef<HTMLDivElement>(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
   const [projectCategory, setProjectCategory] = useState("All");
   const [, setCurrentNavigateState] = useAtom(navigateAtom);
+
+  useEffect(() => {
+    (async () => {
+      setProjects(await getWork());
+    })();
+  }, []);
 
   const handleWorkIntersection = (entry: IntersectionObserverEntry) => {
     if (entry.isIntersecting) {
@@ -106,7 +129,7 @@ const Work = () => {
       </div>
 
       <div className="grid grid-cols-[repeat(auto-fit,300px)] w-full max-w-[1000px] mx-auto justify-center gap-8">
-        {projectCard.map((project, index) => (
+        {projects?.map((project, index) => (
           <ProjectCard key={index} {...project} />
         ))}
       </div>
