@@ -1,18 +1,11 @@
 import React from "react";
+import { CareerTimelineTypes } from "./Skills";
 
-interface CareerTimelineProps {
-  date: number;
-  jobs: {
-    role: string;
-    company: string;
-  }[];
-}
-
-const CareerTimeline = ({ date, jobs }: CareerTimelineProps) => {
+const CareerTimeline = ({ year, jobs }: CareerTimelineTypes) => {
   return (
     <div className="flex gap-6">
       <div>
-        <span className="text-blue-700 font-semibold">{date}</span>
+        <span className="text-blue-700 font-semibold">{year}</span>
       </div>
       <div className="flex flex-col gap-3">
         {jobs.map(({ company, role }, index) => (

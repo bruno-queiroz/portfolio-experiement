@@ -3,14 +3,58 @@ import React, { useEffect, useRef, useState } from "react";
 
 import { experienceData, TechnologiesData } from "../../public/portifolioData";
 import { navigateAtom } from "../App";
+import { SanityResultDefaultTypes } from "../fetch/config";
+import { getExperience } from "../fetch/getExperience";
+import { getTechnologySticker } from "../fetch/getTechnologySticker";
 import { createObserver } from "../utils/intersectionObserver";
 import CareerTimeline from "./CareerTimeline";
 import TechnologySticker from "./TechnologySticker";
 
+interface TechnologyStickerData {
+  technologyName: string;
+  technologyImage: {
+    _type: string;
+    asset: {
+      _ref: string;
+      _type: string;
+    };
+  };
+}
+
+export type TechnologyStickerTypes = TechnologyStickerData &
+  SanityResultDefaultTypes;
+
+interface Job {
+  role: string;
+  company: string;
+}
+
+type JobTypes = SanityResultDefaultTypes & Job;
+
+interface CareerTimelineData {
+  year: string;
+  jobs: JobTypes[];
+}
+
+export type CareerTimelineTypes = CareerTimelineData & SanityResultDefaultTypes;
+
 const Skill = () => {
   const sectionElementRef = useRef<HTMLDivElement>(null);
+  const [careerTimeline, setCareerTimeline] = useState<CareerTimelineTypes[]>(
+    []
+  );
+  const [technologyStickers, setTechnologyStickers] = useState<
+    TechnologyStickerTypes[]
+  >([]);
   const [isIntersecting, setIsIntersecting] = useState(false);
   const [, setCurrentNavigateState] = useAtom(navigateAtom);
+
+  useEffect(() => {
+    (async () => {
+      setCareerTimeline(await getExperience());
+      setTechnologyStickers(await getTechnologySticker());
+    })();
+  }, []);
 
   const handleSkillIntersection = (entry: IntersectionObserverEntry) => {
     if (entry.isIntersecting) {
@@ -44,13 +88,13 @@ const Skill = () => {
       </h2>
       <div className="flex flex-col gap-12 lg:grid lg:grid-cols-2 lg:max-w-[800px] lg:mx-auto">
         <div className="flex gap-6 flex-wrap justify-center w-full">
-          {TechnologiesData.map((technology, index) => (
+          {technologyStickers?.map((technology, index) => (
             <TechnologySticker key={index} {...technology} />
           ))}
         </div>
 
         <div className="flex flex-col gap-4 sm:items-center">
-          {experienceData.map((experience, index) => (
+          {careerTimeline?.map((experience, index) => (
             <CareerTimeline key={index} {...experience} />
           ))}
         </div>
