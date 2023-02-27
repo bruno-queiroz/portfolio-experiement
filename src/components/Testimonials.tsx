@@ -2,14 +2,35 @@ import { useAtom } from "jotai";
 import React, { useEffect, useRef, useState } from "react";
 import { testimonialsBrandsImg } from "../../public/portifolioData";
 import { navigateAtom } from "../App";
+import { SanityResultDefaultTypes } from "../fetch/config";
+import { getBrandLogos } from "../fetch/getBrandLogos";
+import { buildImageUrlFor } from "../utils/buildImageUrl";
 import { createObserver } from "../utils/intersectionObserver";
 import Carousel from "./Carousel";
+
+interface BrandLogoData {
+  brandImage: {
+    _type: string;
+    asset: {
+      _ref: string;
+      _type: string;
+    };
+  };
+}
+
+export type BrandLogoTypes = SanityResultDefaultTypes & BrandLogoData;
 
 const Testimonials = () => {
   const sectionElementRef = useRef<HTMLDivElement>(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
+  const [brandLogos, setBrandLogos] = useState<BrandLogoTypes[]>([]);
   const [, setCurrentNavigateState] = useAtom(navigateAtom);
 
+  useEffect(() => {
+    (async () => {
+      setBrandLogos(await getBrandLogos());
+    })();
+  }, []);
   const handleTestimonialsIntersection = (entry: IntersectionObserverEntry) => {
     if (entry.isIntersecting) {
       setCurrentNavigateState("testimonials");
@@ -40,9 +61,9 @@ const Testimonials = () => {
       <div className="flex flex-col gap-12">
         <Carousel />
         <div className="grid grid-cols-[repeat(auto-fit,170px)] justify-center gap-4">
-          {testimonialsBrandsImg.map((testimonialBrandImg, index) => (
+          {brandLogos.map(({ brandImage }, index) => (
             <img
-              src={testimonialBrandImg}
+              src={buildImageUrlFor(brandImage?.asset?._ref).url()}
               alt="brand-image"
               key={index}
               className="grayscale hover:grayscale-0"
