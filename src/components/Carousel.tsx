@@ -1,25 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   IoIosArrowBack as LeftArrowIcon,
   IoIosArrowForward as RightArrowIcon,
 } from "react-icons/io";
-import { testimonialsData } from "../../public/portifolioData";
+import { SanityResultDefaultTypes } from "../fetch/config";
+import { getTestimonials } from "../fetch/getTestimonials";
+import { buildImageUrlFor } from "../utils/buildImageUrl";
 
-interface CarouselData {
-  img: string;
-  testimonial: string;
-  name: string;
-  company: string;
+interface TestimonialData {
+  testimonial: {
+    testimonialText: string;
+    testimonialName: string;
+    testimonialCompany: string;
+    testimonialImage: {
+      _type: string;
+      asset: {
+        _ref: string;
+        _type: string;
+      };
+    };
+  };
 }
+
+export type TestimonialTypes = SanityResultDefaultTypes & TestimonialData;
 
 const Carousel = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);
-  const [carouselData, setCarouselData] =
-    useState<CarouselData[]>(testimonialsData);
+  const [carousel, setCarousel] = useState<TestimonialTypes[]>([]);
+  console.log(carousel);
+  console.log(carousel?.[carouselIndex]?.testimonial.testimonialText);
+  useEffect(() => {
+    (async () => {
+      setCarousel(await getTestimonials());
+    })();
+  }, []);
 
   const getNextTestimonial = () => {
-    if (carouselIndex === carouselData.length - 1) {
+    if (carouselIndex === carousel.length - 1) {
       setCarouselIndex(0);
       return;
     }
@@ -28,7 +46,7 @@ const Carousel = () => {
 
   const getPreviousTestimonial = () => {
     if (carouselIndex === 0) {
-      setCarouselIndex(carouselData.length - 1);
+      setCarouselIndex(carousel.length - 1);
       return;
     }
     setCarouselIndex((prev) => prev - 1);
@@ -37,21 +55,28 @@ const Carousel = () => {
     <div className="flex flex-col gap-8 items-center">
       <div className="flex flex-col gap-2 bg-white w-full items-center p-6 max-w-[600px] rounded-lg shadow-lg md:gap-10 md:p-12 lg:flex-row">
         <img
-          src={carouselData?.[carouselIndex]?.img}
+          src={
+            carousel?.[carouselIndex]?.testimonial.testimonialImage?.asset?._ref
+              ? buildImageUrlFor(
+                  carousel?.[carouselIndex]?.testimonial.testimonialImage?.asset
+                    ?._ref
+                ).url()
+              : ""
+          }
           alt=""
           className="w-[90px] h-[90px] mx-auto object-cover"
         />
 
         <div className="lg:flex lg:flex-col lg:gap-12">
           <p className="text-[1.25rem] text-gray-700">
-            {carouselData?.[carouselIndex]?.testimonial}
+            {carousel?.[carouselIndex]?.testimonial.testimonialText}
           </p>
           <div className="flex flex-col mt-3">
             <span className="text-blue-700">
-              {carouselData?.[carouselIndex]?.name}
+              {carousel?.[carouselIndex]?.testimonial.testimonialName}
             </span>
             <span className="text-gray-600">
-              {carouselData?.[carouselIndex]?.company}
+              {carousel?.[carouselIndex]?.testimonial.testimonialCompany}
             </span>
           </div>
         </div>
