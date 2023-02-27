@@ -28,8 +28,6 @@ export type TestimonialTypes = SanityResultDefaultTypes & TestimonialData;
 const Carousel = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [carousel, setCarousel] = useState<TestimonialTypes[]>([]);
-  console.log(carousel);
-  console.log(carousel?.[carouselIndex]?.testimonial.testimonialText);
   useEffect(() => {
     (async () => {
       setCarousel(await getTestimonials());

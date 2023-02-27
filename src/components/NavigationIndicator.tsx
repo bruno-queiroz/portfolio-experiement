@@ -6,8 +6,6 @@ const sections = ["home", "about", "work", "skills", "testimonials", "contact"];
 
 const NavigationIndicator = () => {
   const [currentNavigateState] = useAtom(navigateAtom);
-  console.log(currentNavigateState);
-
   return (
     <div className="flex flex-col gap-4 fixed right-2 top-[50%]" aria-hidden>
       {sections.map((section, index) => (
