@@ -3,8 +3,17 @@ import React, { useEffect, useRef, useState } from "react";
 import { navigateAtom } from "../App";
 import { SanityResultDefaultTypes } from "../fetch/config";
 import { getWork } from "../fetch/getWork";
+import { filterProjects } from "../utils/filterProjects";
 import { createObserver } from "../utils/intersectionObserver";
 import ProjectCard from "./ProjectCard";
+
+const projectTechnologies = [
+  "UI/UX",
+  "Web App",
+  "Mobile App",
+  "React JS",
+  "All",
+];
 
 interface ProjectCardData {
   category: string;
@@ -27,6 +36,7 @@ const Work = () => {
   const [isIntersecting, setIsIntersecting] = useState(false);
   const [projectCategory, setProjectCategory] = useState("All");
   const [, setCurrentNavigateState] = useAtom(navigateAtom);
+  const filteredProjectes = filterProjects(projects, projectCategory);
 
   useEffect(() => {
     (async () => {
@@ -50,10 +60,8 @@ const Work = () => {
     return () => clearObserver();
   }, []);
 
-  const changeProjectCategory = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    setProjectCategory(event.currentTarget!.textContent as string);
+  const changeProjectCategory = (projectCategory: string) => {
+    setProjectCategory(projectCategory);
   };
 
   return (
@@ -71,65 +79,24 @@ const Work = () => {
       </h2>
 
       <div className="flex gap-3 flex-wrap justify-center">
-        <button
-          type="button"
-          className={`p-2 rounded-md font-semibold ${
-            projectCategory === "UI/UX"
-              ? "bg-blue-700 text-white"
-              : "bg-white text-black"
-          }`}
-          onClick={changeProjectCategory}
-        >
-          UI/UX
-        </button>
-        <button
-          type="button"
-          className={`p-2 rounded-md font-semibold ${
-            projectCategory === "Web App"
-              ? "bg-blue-700 text-white"
-              : "bg-white text-black"
-          }`}
-          onClick={changeProjectCategory}
-        >
-          Web App
-        </button>
-        <button
-          type="button"
-          className={`p-2 rounded-md font-semibold ${
-            projectCategory === "Mobile App"
-              ? "bg-blue-700 text-white"
-              : "bg-white text-black"
-          }`}
-          onClick={changeProjectCategory}
-        >
-          Mobile App
-        </button>
-        <button
-          type="button"
-          className={`p-2 rounded-md font-semibold ${
-            projectCategory === "React JS"
-              ? "bg-blue-700 text-white"
-              : "bg-white text-black"
-          }`}
-          onClick={changeProjectCategory}
-        >
-          React JS
-        </button>
-        <button
-          type="button"
-          className={`p-2 rounded-md font-semibold ${
-            projectCategory === "All"
-              ? "bg-blue-700 text-white"
-              : "bg-white text-black"
-          }`}
-          onClick={changeProjectCategory}
-        >
-          All
-        </button>
+        {projectTechnologies.map((project, index) => (
+          <button
+            key={index}
+            type="button"
+            className={`p-2 rounded-md font-semibold ${
+              projectCategory === project
+                ? "bg-blue-700 text-white"
+                : "bg-white text-black"
+            }`}
+            onClick={() => changeProjectCategory(project)}
+          >
+            {project}
+          </button>
+        ))}
       </div>
 
       <div className="grid grid-cols-[repeat(auto-fit,300px)] w-full max-w-[1000px] mx-auto justify-center gap-8">
-        {projects?.map((project, index) => (
+        {filteredProjectes?.map((project, index) => (
           <ProjectCard key={index} {...project} />
         ))}
       </div>
