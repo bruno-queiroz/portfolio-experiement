@@ -1,7 +1,6 @@
 import { useAtom } from "jotai";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import { experienceData, TechnologiesData } from "../../public/portifolioData";
 import { navigateAtom } from "../App";
 import { SanityResultDefaultTypes } from "../fetch/config";
 import { getExperience } from "../fetch/getExperience";

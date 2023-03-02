@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import logoImg from "../assets/images/logo.svg";
 import { HiMenuAlt4 as MenuIcon } from "react-icons/hi";
 import { GrClose as CloseMenuIcon } from "react-icons/gr";
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { buildImageUrlFor } from "../utils/buildImageUrl";
 import { ProjectCardTypes } from "./Work";
 

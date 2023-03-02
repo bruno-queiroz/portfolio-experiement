@@ -1,5 +1,3 @@
-import React from "react";
-
 import { FaTwitter as TwitterIcon } from "react-icons/fa";
 import { RiFacebookFill as FacebookIcon } from "react-icons/ri";
 import { BsInstagram as InstagramIcon } from "react-icons/bs";

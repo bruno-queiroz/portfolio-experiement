@@ -1,5 +1,3 @@
-import React from "react";
-import { getSanityURL } from "../fetch/config";
 import { buildImageUrlFor } from "../utils/buildImageUrl";
 
 import { TechnologyStickerTypes } from "./Skills";

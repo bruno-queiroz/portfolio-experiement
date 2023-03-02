@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import SkillCard from "./SkillCard";
-import { skillData } from "../../public/portifolioData";
 import { createObserver } from "../utils/intersectionObserver";
 import { useAtom } from "jotai";
 import { navigateAtom } from "../App";

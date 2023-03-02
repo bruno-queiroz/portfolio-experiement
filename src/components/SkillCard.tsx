@@ -1,5 +1,3 @@
-import ImageUrlBuilder from "@sanity/image-url";
-import React from "react";
 import { buildImageUrlFor } from "../utils/buildImageUrl";
 import { Skill } from "./About";
 

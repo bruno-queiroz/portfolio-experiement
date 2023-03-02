@@ -4,7 +4,7 @@ import Home from "./components/Home";
 import Skill from "./components/Skills";
 import TakeACoffe from "./components/TakeACoffee";
 import Testimonials from "./components/Testimonials";
-import { atom, useAtom } from "jotai";
+import { atom } from "jotai";
 import Work from "./components/Work";
 import NavigationIndicator from "./components/NavigationIndicator";
 import SocialNav from "./components/SocialNav";

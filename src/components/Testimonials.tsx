@@ -1,6 +1,5 @@
 import { useAtom } from "jotai";
-import React, { useEffect, useRef, useState } from "react";
-import { testimonialsBrandsImg } from "../../public/portifolioData";
+import { useEffect, useRef, useState } from "react";
 import { navigateAtom } from "../App";
 import { SanityResultDefaultTypes } from "../fetch/config";
 import { getBrandLogos } from "../fetch/getBrandLogos";

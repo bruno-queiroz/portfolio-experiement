@@ -1,5 +1,4 @@
 import { useAtom } from "jotai";
-import React from "react";
 import { navigateAtom } from "../App";
 
 const sections = ["home", "about", "work", "skills", "testimonials", "contact"];

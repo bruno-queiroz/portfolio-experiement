@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { navigateAtom } from "../App";
 import { SanityResultDefaultTypes } from "../fetch/config";
 import { getWork } from "../fetch/getWork";
